@@ -59,7 +59,7 @@ def preprocess(data):
         'YearBuilt': 1971,
         'YearRemodAdd': 1984,
         'RoofStyle': "Gable",
-        'RoofMatl': "ClyTile",
+        'RoofMatl': "CompShg",
         'Exterior1st': "Plywood",
         'Exterior2nd': "Stone",
         'MasVnrType': "None",
@@ -76,7 +76,7 @@ def preprocess(data):
         'BsmtFinSF2': 46,
         'BsmtUnfSF': 567,
         'TotalBsmtSF': 1057,
-        'Heating': "Floor",
+        'Heating': "GasA",
         'HeatingQC': "TA",
         'CentralAir': "N",
         'Electrical': "FuseA",
@@ -95,7 +95,7 @@ def preprocess(data):
         'Functional': "Typ",
         'Fireplaces': 0,
         'FireplaceQu': "TA",
-        'GarageType': "Basement",
+        'GarageType': "Attchd",
         'GarageYrBlt': 1978,
         'GarageFinish': "Fin",
         'GarageCars': 1,
@@ -155,6 +155,9 @@ def predict(data):
        'SaleCondition']
 
     data = np.array([data[feature] for feature in column_order], dtype=object)
+    data = data.reshape(1,-1)
+    
+    pdData = pd.DataFrame(data, columns = column_order)
     
 
     # NB: In this case we didn't do any preprocessing of the data before 
@@ -163,13 +166,11 @@ def predict(data):
     # own work, make sure you do the same to the data entered by the user before 
     # predicting with the trained model. This can be achieved by saving an entire 
     # sckikit-learn pipeline, for example using joblib as in the notebook.
-    preparedData = pipeline.transform(data.reshape(1,-1))
+    preparedData = pipeline.transform(pdData)
     
-    pred = model.predict(preparedData.reshape)
+    pred = model.predict(preparedData)
 
-    uncertainty = model.predict_proba(preparedData)
-
-    return pred, uncertainty
+    return pred
 
 
 def postprocess(prediction):
@@ -178,7 +179,7 @@ def postprocess(prediction):
     additional information etc. 
     """
 
-    pred, uncertainty = prediction
+    pred = prediction
 
     # Validate. As an example, if the output is an int, check that it is positive.
     try: 
@@ -188,10 +189,9 @@ def postprocess(prediction):
 
     # Make strings
     pred = str(pred[0])
-    uncertainty = str(uncertainty[0])
 
 
     # Return
-    return_dict = {'pred': pred, 'uncertainty': uncertainty}
+    return_dict = {'pred': pred}
 
     return return_dict

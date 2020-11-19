@@ -26,10 +26,10 @@
 {% endblock %}
 
 {% block content %}
-<img src="../../assets/housesbanner.png" alt="Responsive image">
 <div class='container'>
     <p>Predict the price of a house in Ames, Iowa, by filling in the information below.
        Any fields not filled in will be filled with default value instead.</p>
+    <p><b>There are currently some categories of data which is not recognized by the model so if a category value is invalid try another one.</b></p>
 </div>
 
 <div class='container'>
@@ -40,7 +40,7 @@
 
     <h3>{% if session.get('pred') %} The predicted value of the house is {{session.get('pred')['pred']}}$</h3>
 
-    <h4>Probabilities: {{session.get('pred')['uncertainty']}}
+    <h4>{{session.get('pred')['uncertainty']}}
          {% else %} {% endif %}</h4>
     <br>
     <h4>User information: {{session.get('user_info')}}</h4>

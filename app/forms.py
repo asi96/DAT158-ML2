@@ -11,11 +11,12 @@ class DataForm(FlaskForm):
     are set to default values in `predict.py`).
     """
 
+    # Selected features with the highest impact - can uncomment more if interested
     MSSubClass = IntegerField('MSSubClass: Type of dwelling involved in the sale', validators=[NumberRange(min=20, max=190)])
-    '''
     MSZoning = StringField('MSZoning: The general zoning classification of the sale')
     LotFrontage = FloatField('LotFrontage: Linear feet of street connected to property')
     LotArea = IntegerField('LotArea: Lot size in square feet')
+    '''
     Street = StringField('Street: Type of road access to property')
     LotShape = StringField('LotShape: General shape of property')
     LandContour = StringField('LotShape: General shape of property')
@@ -27,10 +28,12 @@ class DataForm(FlaskForm):
     Condition2 = StringField('Condition2: Proximity to various conditions (if more than one is present')
     BldgType = StringField('BldgType: Type of dwelling')
     HouseStyle = StringField('HouseStyle: Style of dwelling')
+    '''
     OverallQual = IntegerField('OverallQual: Rates the overall material and finish of the house', validators=[NumberRange(min=1, max=10)])
     OverallCond = IntegerField('OverallCond: Rates the overall condition of the house', validators=[NumberRange(min=1, max=10)])
     YearBuilt = IntegerField('YearBuilt: Original construction date')
     YearRemodAdd = IntegerField('Remodel date (same as construction date if no remodeling or additions)')
+    '''
     RoofStyle = StringField('RoofStyle: Type of roof')
     RoofMatl = StringField('RoofMatl: Roof material')
     Exterior1st = StringField('Exterior1st: Exterior covering on house')
@@ -57,10 +60,12 @@ class DataForm(FlaskForm):
     ##1stFloorSF = IntegerField('1stFlrSF: First Floor square feet')
     ##2ndFloorSF = IntegerField('2ndFlrSF: Second floor square feet')
     LowQualFinSF = IntegerField('LowQualFinSF: Low quality finished square feet (all floors)')
+    '''
     GrLivArea = IntegerField('GrLivArea: Above grade (ground) living area square feet')
     BsmtFullBath = IntegerField('BsmtFullBath: Basement full bathrooms')
     BsmtHalfBath = IntegerField('BsmtHalfBath: Basement half bathrooms')
     FullBath = IntegerField('FullBath: Full bathrooms above grade')
+    '''
     HalfBath = IntegerField('HalfBath: Half baths above grade')
     BedroomAbvGr = IntegerField('BedroomAbvGr: Bedrooms above grade (does NOT include basement bedrooms)')
     KitchenAbvGr = IntegerField('KitchenAbvGr: Kitchens above grade')
@@ -72,8 +77,10 @@ class DataForm(FlaskForm):
     GarageType = StringField('GarageType: Garage location')
     GarageYrBlt = FloatField('GarageYrBlt: Year garage was built')
     GarageFinish = StringField('GarageFinish: Interior finish of the garage')
+    '''
     GarageCars = IntegerField('GarageCars: Size of garage in car capacity')
     GarageArea = IntegerField('GarageArea: Size of garage in square feet')
+    '''
     GarageQual = StringField('GarageQual: Garage quality')
     GarageCond = StringField('GarageCond: Garage condition')
     PavedDrive = StringField('PavedDrive: Paved driveway')
