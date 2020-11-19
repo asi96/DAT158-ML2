@@ -13,4 +13,7 @@ which was fitted into the prediction model.
 
 If you want more features available you can uncomment them in `features.py` located in `app/forms.py`.
 
+Demo preview:
+![Alt text](assets/demo.png?raw=true "Houses")
+
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/h571740/DAT158-ML2/HEAD?filepath=notebooks%2FML%20Nr%202%20-%20Playing%20the%20Whole%20Game.ipynb)
