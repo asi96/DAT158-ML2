@@ -11,6 +11,7 @@ There are currently some categorical data not recognized by the machine learning
 error try another until it works. This is a result of a small initial dataset not having every category represented
 which was fitted into the prediction model.
 
+Features not show in the demo form has default/median values assigned to them.
 If you want more features available you can uncomment them in `features.py` located in `app/forms.py`.
 
 Demo preview:
