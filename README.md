@@ -7,4 +7,10 @@ The machine learning model has been deployed and can be run locally by executing
 
 `python housepriceapp.py`
 
+There are currently some categorical data not recognized by the machine learning model so if a category value produces an
+error try another until it works. This is a result of a small initial dataset not having every category represented
+which was fitted into the prediction model.
+
+If you want more features available you can uncomment them in `features.py` located in `app/forms.py`.
+
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/h571740/DAT158-ML2/HEAD?filepath=notebooks%2FML%20Nr%202%20-%20Playing%20the%20Whole%20Game.ipynb)
