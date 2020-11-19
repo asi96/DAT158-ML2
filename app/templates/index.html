@@ -1,0 +1,50 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}HousePriceApp{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('index') }}">HousePriceApp</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('index') }}">Make Prediction</a></li>
+                <li><a href="{{ url_for('dashboard') }}">Data Descriptions</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<img src="../../assets/housesbanner.png" alt="Responsive image">
+<div class='container'>
+    <p>Predict the price of a house in Ames, Iowa, by filling in the information below.
+       Any fields not filled in will be filled with default value instead.</p>
+</div>
+
+<div class='container'>
+    {{ wtf.quick_form(form) }}
+</div>
+
+<div class='container'>
+
+    <h3>{% if session.get('pred') %} The predicted value of the house is {{session.get('pred')['pred']}}$</h3>
+
+    <h4>Probabilities: {{session.get('pred')['uncertainty']}}
+         {% else %} {% endif %}</h4>
+    <br>
+    <h4>User information: {{session.get('user_info')}}</h4>
+
+</div>
+
+{% endblock %}

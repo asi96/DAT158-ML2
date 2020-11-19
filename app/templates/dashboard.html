@@ -1,0 +1,722 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}HousePriceApp{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('index') }}">HousePriceApp</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('index') }}">Make Prediction</a></li>
+                <li><a href="{{ url_for('dashboard') }}">Data Descriptions</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+{% block content %}
+<div class='container'>
+    <div class='page-header'>
+        <h1>Data Descriptions</h1>
+    </div>
+</div>
+
+<div class='container'>
+        <h3><em>Descriptions for every feature known to the machine learning model</em></h3>
+<p>
+<b>MSSubClass (Numeric):</b> Identifies the type of dwelling involved in the sale.	
+<ul>
+        <li>20	1-STORY 1946 & NEWER ALL STYLES</li>
+        <li>30	1-STORY 1945 & OLDER</li>
+        <li>40	1-STORY W/FINISHED ATTIC ALL AGES</li>
+        <li>45	1-1/2 STORY - UNFINISHED ALL AGES</li>
+        <li>50	1-1/2 STORY FINISHED ALL AGES</li>
+        <li>60	2-STORY 1946 & NEWER</li>
+        <li>70	2-STORY 1945 & OLDER</li>
+        <li>75	2-1/2 STORY ALL AGES</li>
+        <li>80	SPLIT OR MULTI-LEVEL</li>
+        <li>85	SPLIT FOYER</li>
+        <li>90	DUPLEX - ALL STYLES AND AGES</li>
+       <li>120	1-STORY PUD (Planned Unit Development) - 1946 & NEWER</li>
+       <li>150	1-1/2 STORY PUD - ALL AGES</li>
+       <li>160	2-STORY PUD - 1946 & NEWER</li>
+       <li>180	PUD - MULTILEVEL - INCL SPLIT LEV/FOYER</li>
+      <li> 190	2 FAMILY CONVERSION - ALL STYLES AND AGES</li>
+</ul>
+</p>
+<p>
+<b>MSZoning (Categoric):</b> Identifies the general zoning classification of the sale.
+<ul>		
+       <li>A	Agriculture</li>
+       <li>C	Commercial</li>
+       <li>FV	Floating Village Residential</li>
+       <li>I	Industrial</li>
+       <li>RH	Residential High Density</li>
+       <li>RL	Residential Low Density</li>
+       <li>RP	Residential Low Density Park </li>
+       <li>RM	Residential Medium Density</li>
+</ul>
+</p>
+
+<p>	
+<b>LotFrontage (Numeric):</b> Linear feet of street connected to property
+</p>
+
+<p>
+<b>LotArea (Numeric):</b> Lot size in square feet
+</p>
+
+<p>
+<b>Street (Categoric):</b> Type of road access to property
+<ul>
+       <li>Grvl	Gravel</li>	
+       <li>Pave	Paved</li>
+</ul>
+</p>
+
+<p>       			
+<b>LotShape (Categoric):</b> General shape of property
+<ul>
+       <li>Reg	Regular</li>	
+       <li>IR1	Slightly irregular</li>
+       <li>IR2	Moderately Irregular</li>
+       <li>IR3	Irregular</li>
+</ul>
+</p>
+
+<p>       
+<b>LandContour (Categoric):</b> Flatness of the property
+<ul>
+       <li>Lvl	Near Flat/Level</li>
+       <li>Bnk	Banked - Quick and significant rise from street grade to building</li>
+       <li>HLS	Hillside - Significant slope from side to side</li>
+       <li>Low	Depression</li>
+</ul>
+</p>
+
+<p>		
+<b>Utilities (Categoric):</b> Type of utilities available
+<ul>		
+       <li>AllPub	All public Utilities (E,G,W,& S)</li>	
+       <li>NoSewr	Electricity, Gas, and Water (Septic Tank)</li>
+       <li>NoSeWa	Electricity and Gas Only</li>
+       <li>ELO	Electricity only</li>
+</ul>	
+</p>
+
+<p>	
+<b>LotConfig (Categoric):</b> Lot configuration
+<ul>
+       <li>Inside	Inside lot</li>
+       <li>Corner	Corner lot</li>
+       <li>CulDSac	Cul-de-sac</li>
+       <li>FR2	Frontage on 2 sides of property</li>
+       <li>FR3	Frontage on 3 sides of property</li>
+</ul>
+</p>
+
+<p>	
+<b>LandSlope (Categoric):</b> Slope of property
+<ul>		
+       <li>Gtl	Gentle slope</li>
+       <li>Mod	Moderate Slope</li>	
+       <li>Sev	Severe Slope</li>
+</ul>
+</p>
+
+<p>
+<b>Neighborhood (Categoric):</b> Physical locations within Ames city limits
+<ul>
+       <li>Blmngtn	Bloomington Heights</li>
+       <li>Blueste	Bluestem</li>
+       <li>BrDale	Briardale</li>
+       <li>BrkSide	Brookside</li>
+       <li>ClearCr	Clear Creek</li>
+       <li>CollgCr	College Creek</li>
+       <li>Crawfor	Crawford</li>
+       <li>Edwards	Edwards</li>
+       <li>Gilbert	Gilbert</li>
+       <li>IDOTRR	Iowa DOT and Rail Road</li>
+       <li>MeadowV	Meadow Village</li>
+       <li>Mitchel	Mitchell</li>
+       <li>Names	North Ames</li>
+       <li>NoRidge	Northridge</li>
+       <li>NPkVill	Northpark Villa</li>
+       <li>NridgHt	Northridge Heights</li>
+       <li>NWAmes	Northwest Ames</li>
+       <li>OldTown	Old Town</li>
+       <li>SWISU	South & West of Iowa State University</li>
+       <li>Sawyer	Sawyer</li>
+       <li>SawyerW	Sawyer West</li>
+       <li>Somerst	Somerset</li>
+       <li>StoneBr	Stone Brook</li>
+       <li>Timber	Timberland</li>
+       <li>Veenker	Veenker</li>
+</ul>
+</p>
+
+<p>			
+<b>Condition1 (Categoric):</b> Proximity to various conditions
+<ul>	
+       <li>Artery	Adjacent to arterial street</li>
+       <li>Feedr	Adjacent to feeder street</li>	
+       <li>Norm	Normal</li>	
+       <li>RRNn	Within 200' of North-South Railroad</li>
+       <li>RRAn	Adjacent to North-South Railroad</li>
+       <li>PosN	Near positive off-site feature--park, greenbelt, etc.</li>
+       <li>PosA	Adjacent to postive off-site feature</li>
+       <li>RRNe	Within 200' of East-West Railroad</li>
+       <li>RRAe	Adjacent to East-West Railroad</li>
+</ul>
+</p>
+
+<p>	
+<b>Condition2 (Categoric):</b> Proximity to various conditions (if more than one is present)
+<ul>		
+       <li>Artery	Adjacent to arterial street</li>
+       <li>Feedr	Adjacent to feeder street</li>	
+       <li>Norm	Normal</li>	
+       <li>RRNn	Within 200' of North-South Railroad</li>
+       <li>RRAn	Adjacent to North-South Railroad</li>
+       <li>PosN	Near positive off-site feature--park, greenbelt, etc.</li>
+       <li>PosA	Adjacent to postive off-site feature</li>
+       <li>RRNe	Within 200' of East-West Railroad</li>
+       <li>RRAe	Adjacent to East-West Railroad</li>
+</ul>
+</p>
+
+<p>	
+<b>BldgType (Categoric):</b> Type of dwelling
+<ul>		
+       <li>1Fam	Single-family Detached</li>	
+       <li>2FmCon	Two-family Conversion; originally built as one-family dwelling</li>
+       <li>Duplx	Duplex</li>
+       <li>TwnhsE	Townhouse End Unit</li>
+       <li>TwnhsI	Townhouse Inside Unit</li>
+</ul>
+</p>
+
+<p>	
+<b>HouseStyle (Categoric):</b> Style of dwelling
+<ul>	
+       <li>1Story	One story</li>
+       <li>1.5Fin	One and one-half story: 2nd level finished</li>
+       <li>1.5Unf	One and one-half story: 2nd level unfinished</li>
+       <li>2Story	Two story</li>
+       <li>2.5Fin	Two and one-half story: 2nd level finished</li>
+       <li>2.5Unf	Two and one-half story: 2nd level unfinished</li>
+       <li>SFoyer	Split Foyer</li>
+       <li>SLvl	Split Level</li>
+</ul>
+</p>
+
+<p>	
+<b>OverallQual (Numeric):</b> Rates the overall material and finish of the house
+<ul>
+       <li>10	Very Excellent</li>
+       <li>9	Excellent</li>
+       <li>8	Very Good</li>
+       <li>7	Good</li>
+       <li>6	Above Average</li>
+       <li>5	Average</li>
+       <li>4	Below Average</li>
+       <li>3	Fair</li>
+       <li>2	Poor</li>
+       <li>1	Very Poor</li>
+</ul>
+</p>
+
+<p>	
+<b>OverallCond (Numeric):</b> Rates the overall condition of the house
+<ul>
+       <li>10	Very Excellent</li>
+       <li>9	Excellent</li>
+       <li>8	Very Good</li>
+       <li>7	Good</li>
+       <li>6	Above Average</li>	
+       <li>5	Average</li>
+       <li>4	Below Average</li>	
+       <li>3	Fair</li>
+       <li>2	Poor</li>
+       <li>1	Very Poor</li>
+</ul>
+</p>
+
+<p>		
+<b>YearBuilt (Numeric):</b> Original construction date
+</p>
+
+<p>
+<b>YearRemodAdd (Numeric):</b> Remodel date (same as construction date if no remodeling or additions)
+</p>
+
+<p>
+<b>RoofStyle (Categoric):</b> Type of roof
+<ul>
+       <li>Flat	Flat</li>
+       <li>Gable	Gable</li>
+       <li>Gambrel	Gabrel (Barn)</li>
+       <li>Hip	Hip</li>
+       <li>Mansard	Mansard</li>
+       <li>Shed	Shed¨</li>
+</ul>
+</p>
+
+<p>		
+<b>RoofMatl (Categoric):</b> Roof material
+<ul>
+       <li>ClyTile	Clay or Tile</li>
+       <li>CompShg	Standard (Composite) Shingle</li>
+       <li>Membran	Membrane</li>
+       <li>Metal	Metal</li>
+       <li>Roll	Roll</li>
+       <li>Tar&Grv	Gravel & Tar</li>
+       <li>WdShake	Wood Shakes</li>
+       <li>WdShngl	Wood Shingles</li>
+</ul>
+</p>
+
+<p>		
+<b>Exterior1st (Categoric):</b> Exterior covering on house
+<ul>
+       <li>AsbShng	Asbestos Shingles</li>
+       <li>AsphShn	Asphalt Shingles</li>
+       <li>BrkComm	Brick Common</li>
+       <li>BrkFace	Brick Face</li>
+       <li>CBlock	Cinder Block</li>
+       <li>CemntBd	Cement Board</li>
+       <li>HdBoard	Hard Board</li>
+       <li>ImStucc	Imitation Stucco</li>
+       <li>MetalSd	Metal Siding</li>
+       <li>Other	Other</li>
+       <li>Plywood	Plywood</li>
+       <li>PreCast	PreCast</li>	
+       <li>Stone	Stone</li>
+       <li>Stucco	Stucco</li>
+       <li>VinylSd	Vinyl Siding</li>
+       <li>Wd Sdng	Wood Siding</li>
+       <li>WdShing	Wood Shingles</li>
+</ul>
+</p>
+
+<p>	
+<b>Exterior2nd (Categoric):</b> Exterior covering on house (if more than one material)
+<ul>
+       <li>AsbShng	Asbestos Shingles</li>
+       <li>AsphShn	Asphalt Shingles</li>
+       <li>BrkComm	Brick Common</li>
+       <li>BrkFace	Brick Face</li>
+       <li>CBlock	Cinder Block</li>
+       <li>CemntBd	Cement Board</li>
+       <li>HdBoard	Hard Board</li>
+       <li>ImStucc	Imitation Stucco</li>
+       <li>MetalSd	Metal Siding</li>
+       <li>Other	Other</li>
+       <li>Plywood	Plywood</li>
+       <li>PreCast	PreCast</li>
+       <li>Stone	Stone</li>
+       <li>Stucco	Stucco</li>
+       <li>VinylSd	Vinyl Siding</li>
+       <li>Wd Sdng	Wood Siding</li>
+       <li>WdShing	Wood Shingles</li>
+</ul>
+</p>
+
+<p>	
+<b>MasVnrType (Categoric):</b> Masonry veneer type
+<ul>
+       <li>BrkCmn	Brick Common</li>
+       <li>BrkFace	Brick Face</li>
+       <li>CBlock	Cinder Block</li>
+       <li>None	None</li>
+       <li>Stone	Stone</li>
+</ul>
+</p>
+
+<p>	
+<b>MasVnrArea (Numeric):</b> Masonry veneer area in square feet
+</p>
+
+<p>
+<b>ExterQual (Categoric):</b> Evaluates the quality of the material on the exterior 
+<ul>		
+       <li>Ex	Excellent</li>
+       <li>Gd	Good</li>
+       <li>TA	Average/Typical</li>
+       <li>Fa	Fair</li>
+       <li>Po	Poor</li>
+</ul>
+</p>
+
+<p>		
+<b>ExterCond (Categoric):</b> Evaluates the present condition of the material on the exterior
+<ul>		
+       <li>Ex	Excellent</li>
+       <li>Gd	Good</li>
+       <li>TA	Average/Typical</li>
+       <li>Fa	Fair</li>
+       <li>Po	Poor</li>
+</ul>
+</p>
+
+<p>		
+<b>Foundation (Categoric):</b> Type of foundation
+<ul>		
+       <li>BrkTil	Brick & Tile</li>
+       <li>CBlock	Cinder Block</li>
+       <li>PConc	Poured Contrete</li>	
+       <li>Slab	Slab</li>
+       <li>Stone	Stone</li>
+       <li>Wood	Wood</li>
+</ul>
+</p>
+
+<p>		
+<b>BsmtQual (Categoric):</b> Evaluates the height of the basement
+<ul>
+       <li>Ex	Excellent (100+ inches)</li>	
+       <li>Gd	Good (90-99 inches)</li>
+       <li>TA	Typical (80-89 inches)</li>
+       <li>Fa	Fair (70-79 inches)</li>
+       <li>Po	Poor (<70 inches)</li>
+       <li>NA	No Basement</li>
+</ul>
+</p>
+
+<p>		
+<b>BsmtCond (Categoric):</b> Evaluates the general condition of the basement
+<ul>
+       <li>Ex	Excellent</li>
+       <li>Gd	Good</li>
+       <li>TA	Typical - slight dampness allowed</li>
+       <li>Fa	Fair - dampness or some cracking or settling</li>
+       <li>Po	Poor - Severe cracking, settling, or wetness</li>
+       <li>NA	No Basement</li>
+</ul>
+</p>
+
+<p>	
+<b>BsmtExposure (Categoric):</b> Refers to walkout or garden level walls
+<ul>
+       <li>Gd	Good Exposure</li>
+       <li>Av	Average Exposure (split levels or foyers typically score average or above)</li>	
+       <li>Mn	Mimimum Exposure</li>
+       <li>No	No Exposure</li>
+       <li>NA	No Basement</li>
+</ul>
+</p>
+
+<p>	
+<b>BsmtFinType1 (Categoric):</b> Rating of basement finished area
+<ul>
+       <li>GLQ	Good Living Quarters</li>
+       <li>ALQ	Average Living Quarters</li>
+       <li>BLQ	Below Average Living Quarters</li>	
+       <li>Rec	Average Rec Room</li>
+       <li>LwQ	Low Quality</li>
+       <li>Unf	Unfinshed</li>
+       <li>NA	No Basement</li>
+</ul>
+</p>
+
+<p>		
+<b>BsmtFinSF1 (Numeric):</b> Type 1 finished square feet
+</p>
+
+<p>
+<b>BsmtFinType2 (Categoric):</b> Rating of basement finished area (if multiple types)
+<ul>
+       <li>GLQ	Good Living Quarters</li>
+       <li>ALQ	Average Living Quarters</li>
+       <li>BLQ	Below Average Living Quarters</li>	
+       <li>Rec	Average Rec Room</li>
+       <li>LwQ	Low Quality</li>
+       <li>Unf	Unfinshed</li>
+       <li>NA	No Basement</li>
+</ul>
+</p>
+
+<p>
+<b>BsmtFinSF2 (Numeric):</b> Type 2 finished square feet
+</p>
+
+<p>
+<b>BsmtUnfSF (Numeric):</b> Unfinished square feet of basement area
+</p>
+
+<p>
+<b>TotalBsmtSF (Numeric):</b> Total square feet of basement area
+</p>
+
+<p>
+<b>Heating (Categoric):</b> Type of heating
+<ul>		
+       <li>Floor	Floor Furnace</li>
+       <li>GasA	Gas forced warm air furnace</li>
+       <li>GasW	Gas hot water or steam heat</li>
+       <li>Grav	Gravity furnace</li>	
+       <li>OthW	Hot water or steam heat other than gas</li>
+       <li>Wall	Wall furnace</li>
+</ul>
+</p>
+
+<p>		
+<b>HeatingQC (Categoric):</b> Heating quality and condition
+<ul>
+       <li>Ex	Excellent</li>
+       <li>Gd	Good</li>
+       <li>TA	Average/Typical</li>
+       <li>Fa	Fair</li>
+       <li>Po	Poor</li>
+</ul>
+</p>
+
+<p>		
+<b>CentralAir (Categoric):</b> Central air conditioning
+<ul>
+       <li>N	No</li>
+       <li>Y	Yes</li>
+</ul>
+</p>
+
+<p>		
+<b>Electrical (Categoric):</b> Electrical system
+<ul>
+       <li>SBrkr	Standard Circuit Breakers & Romex</li>
+       <li>FuseA	Fuse Box over 60 AMP and all Romex wiring (Average)</li>	
+       <li>FuseF	60 AMP Fuse Box and mostly Romex wiring (Fair)</li>
+       <li>FuseP	60 AMP Fuse Box and mostly knob & tube wiring (poor)</li>
+       <li>Mix	Mixed</li>
+</ul>
+</p>
+
+<p>		
+<b>1stFlrSF (Numeric):</b> First Floor square feet
+</p>
+
+<p> 
+<b>2ndFlrSF (Numeric):</b> Second floor square feet
+</p>
+
+<p>
+<b>LowQualFinSF (Numeric):</b> Low quality finished square feet (all floors)
+</p>
+
+<p>
+<b>GrLivArea (Numeric):</b> Above grade (ground) living area square feet
+</p>
+
+<p>
+<b>BsmtFullBath (Numeric):</b> Basement full bathrooms
+</p>
+
+<p>
+<b>BsmtHalfBath (Numeric):</b> Basement half bathrooms
+</p>
+
+<p>
+<b>FullBath (Numeric):</b> Full bathrooms above grade
+</p>
+
+<p>
+<b>HalfBath (Numeric):</b> Half baths above grade
+</p>
+
+<p>
+<b>Bedroom (Numeric):</b> Bedrooms above grade (does NOT include basement bedrooms)
+</p>
+
+<p>
+<b>Kitchen (Numeric):</b> Kitchens above grade
+</p>
+
+<p>
+<b>KitchenQual (Categoric):</b> Kitchen quality
+<ul>
+       <li>Ex	Excellent</li>
+       <li>Gd	Good</li>
+       <li>TA	Typical/Average</li>
+       <li>Fa	Fair</li>
+       <li>Po	Poor</li>
+</ul>
+</p>
+
+<p>       	
+<b>TotRmsAbvGrd (Numeric):</b> Total rooms above grade (does not include bathrooms)
+</p>
+
+<p>
+<b>Functional (Categoric):</b> Home functionality (Assume typical unless deductions are warranted)
+<ul>
+       <li>Typ	Typical Functionality</li>
+       <li>Min1	Minor Deductions 1</li>
+       <li>Min2	Minor Deductions 2</li>
+       <li>Mod	Moderate Deductions</li>
+       <li>Maj1	Major Deductions 1</li>
+       <li>Maj2	Major Deductions 2</li>
+       <li>Sev	Severely Damaged</li>
+       <li>Sal	Salvage only</li>
+</ul>
+</p>
+
+<p>		
+<b>Fireplaces (Numeric):</b> Number of fireplaces
+</p>
+
+<p>
+<b>FireplaceQu (Categoric):</b> Fireplace quality
+<ul>
+       <li>Ex	Excellent - Exceptional Masonry Fireplace</li>
+       <li>Gd	Good - Masonry Fireplace in main level</li>
+       <li>TA	Average - Prefabricated Fireplace in main living area or Masonry Fireplace in basement</li>
+       <li>Fa	Fair - Prefabricated Fireplace in basement</li>
+       <li>Po	Poor - Ben Franklin Stove</li>
+       <li>NA	No Fireplace</li>
+</ul>
+</p>
+
+<p>		
+<b>GarageType (Categoric):</b> Garage location
+<ul>		
+       <li>2Types	More than one type of garage</li>
+       <li>Attchd	Attached to home</li>
+       <li>Basment	Basement Garage</li>
+       <li>BuiltIn	Built-In (Garage part of house - typically has room above garage)</li>
+       <li>CarPort	Car Port</li>
+       <li>Detchd	Detached from home</li>
+       <li>NA	No Garage</li>
+</ul>
+</p>
+
+<p>		
+<b>GarageYrBlt (Numeric):</b> Year garage was built
+</p>
+
+<p>		
+<b>GarageFinish (Categoric):</b> Interior finish of the garage
+<ul>
+       <li>Fin	Finished</li>
+       <li>RFn	Rough Finished</li>	
+       <li>Unf	Unfinished</li>
+       <li>NA	No Garage</li>
+</ul>
+</p>
+
+<p>		
+<b>GarageCars (Numeric):</b> Size of garage in car capacity
+</p>
+
+<p>
+<b>GarageArea (Numeric):</b> Size of garage in square feet
+</p>
+
+<p>
+<b>GarageQual (Categoric):</b> Garage quality
+<ul>
+       <li>Ex	Excellent</li>
+       <li>Gd	Good</li>
+       <li>TA	Typical/Average</li>
+       <li>Fa	Fair</li>
+       <li>Po	Poor</li>
+       <li>NA	No Garage</li>
+</ul>
+</p>
+
+<p>		
+<b>GarageCond (Categoric):</b> Garage condition
+<ul>
+       <li>Ex	Excellent</li>
+       <li>Gd	Good</li>
+       <li>TA	Typical/Average</li>
+       <li>Fa	Fair</li>
+       <li>Po	Poor</li>
+       <li>NA	No Garage</li>
+</ul>
+</p>
+
+<p>		
+<b>PavedDrive (Categoric):</b> Paved driveway
+<ul>
+       <li>Y	Paved</li> 
+       <li>P	Partial Pavement</li>
+       <li>N	Dirt/Gravel</li>
+</ul>
+</p>
+
+<p>		
+<b>WoodDeckSF (Numeric):</b> Wood deck area in square feet
+</p>
+
+<p>
+<b>OpenPorchSF (Numeric):</b> Open porch area in square feet
+</p>
+
+<p>
+<b>EnclosedPorch (Numeric):</b> Enclosed porch area in square feet
+</p>
+
+<p>
+<b>3SsnPorch (Numeric):</b> Three season porch area in square feet
+</p>
+
+<p>
+<b>ScreenPorch (Numeric):</b> Screen porch area in square feet
+</p>
+
+<p>
+<b>PoolArea (Numeric):</b> Pool area in square feet
+</p>
+
+<p>	
+<b>MiscVal (Numeric):</b> $Value of miscellaneous feature
+</p>
+
+<p>
+<b>MoSold (Numeric):</b> Month Sold (MM)
+</p>
+
+<p>
+<b>YrSold (Numeric):</b> Year Sold (YYYY)
+</p>
+
+<p>
+<b>SaleType (Categoric):</b> Type of sale
+<ul>		
+       <li>WD 	Warranty Deed - Conventional</li>
+       <li>CWD	Warranty Deed - Cash</li>
+       <li>VWD	Warranty Deed - VA Loan</li>
+       <li>New	Home just constructed and sold</li>
+       <li>COD	Court Officer Deed/Estate</li>
+       <li>Con	Contract 15% Down payment regular terms</li>
+       <li>ConLw	Contract Low Down payment and low interest</li>
+       <li>ConLI	Contract Low Interest</li>
+       <li>ConLD	Contract Low Down</li>
+       <li>Oth	Other</li>
+</ul>
+</p>
+
+<p>		
+<b>SaleCondition (Categoric):</b> Condition of sale
+<ul>
+       <li>Normal	Normal Sale</li>
+       <li>Abnorml	Abnormal Sale -  trade, foreclosure, short sale</li>
+       <li>AdjLand	Adjoining Land Purchase</li>
+       <li>Alloca	Allocation - two linked properties with separate deeds, typically condo with a garage unit</li>	
+       <li>Family	Sale between family members</li>
+       <li>Partial	Home was not completed when last assessed (associated with New Homes)</li>
+</ul>
+</p>
+    </div>    
+{% endblock %}
